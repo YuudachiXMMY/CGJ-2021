@@ -2,9 +2,12 @@
 errors listed below, and try again.
 
 
-File "game/scenes/intro/intro.rpy", line 30: u'transform' is not a keyword argument or valid child for the add statement.
-    transform:
-             ^
+File "game/scenes/intro/intro.rpy", line 15: Line is indented, but the preceding zorder statement does not expect a block. Please check this line's indentation.
+    action [    Hide('mainChacter'), Show('mainChacter'),
+    ^
+                        SetVariable('curr_mouse_xpos', renpy.get_mouse_pos()[0]),
+                        SetVariable('tar_player_xpos', renpy.get_mouse_pos()[0]),
+                        SetVariable('local_xoffset', global_xoffset)]
 
 Ren'Py Version: Ren'Py 7.4.6.1693
-Fri Jul  9 22:07:15 2021
+Fri Jul  9 23:55:57 2021

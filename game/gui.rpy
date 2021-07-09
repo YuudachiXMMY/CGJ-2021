@@ -473,3 +473,10 @@ init python:
 
 
 
+################################################################################
+## My Gui
+# Bar
+image bgControl_slider_idle:
+    'gui/map/scrollbar_bg.png'
+image bgControl_slider_btn_idle:
+    'gui/map/scrollbar_button.png'

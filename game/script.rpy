@@ -12,6 +12,8 @@ label start:
     # scene intro_bg:
     #     xpos 0 xoffset global_xoffset
 
+    $ curr_mouse_xpos = renpy.get_mouse_pos()[0]
+
     call screen intro()
 
     pause

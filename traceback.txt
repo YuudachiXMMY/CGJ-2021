@@ -1,30 +1,22 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 15, in script
+  File "game/script.rpy", line 17, in script
     call screen intro()
   File "renpy/common/000statements.rpy", line 569, in execute_call_screen
     store._return = renpy.call_screen(name, *args, **kwargs)
-  File "game/scenes/intro/intro.rpy", line 24, in execute
-    screen mainChacter():
-  File "game/scenes/intro/intro.rpy", line 24, in execute
-    screen mainChacter():
-  File "game/scenes/intro/intro.rpy", line 28, in execute
-    add 'main_character_front':
-  File "game/scenes/intro/intro.rpy", line 28, in keywords
-    add 'main_character_front':
-  File "game/scenes/intro/intro.rpy", line 29, in keywords
-    if curr_mouse_xpos != curr_player_xpos:
-  File "game/scenes/intro/intro.rpy", line 31, in keywords
-    else:
-  File "game/scenes/intro/intro.rpy", line 32, in <module>
-    xpos curr_player_xpos[0]-local_xoffset
-TypeError: 'int' object has no attribute '__getitem__'
+  File "game/scenes/intro/intro.rpy", line 49, in execute
+    screen intro():
+  File "game/scenes/intro/intro.rpy", line 49, in execute
+    screen intro():
+  File "game/scenes/intro/intro.rpy", line 60, in execute
+    imagebutton:
+Exception: Imagebutton does not have a idle image.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 15, in script
+  File "game/script.rpy", line 17, in script
     call screen intro()
   File "renpy/ast.py", line 2009, in execute
     self.call("execute")
@@ -56,23 +48,19 @@ Full traceback:
     self.update()
   File "renpy/display/screen.py", line 631, in update
     self.screen.function(**self.scope)
-  File "game/scenes/intro/intro.rpy", line 24, in execute
-    screen mainChacter():
-  File "game/scenes/intro/intro.rpy", line 24, in execute
-    screen mainChacter():
-  File "game/scenes/intro/intro.rpy", line 28, in execute
-    add 'main_character_front':
-  File "game/scenes/intro/intro.rpy", line 28, in keywords
-    add 'main_character_front':
-  File "game/scenes/intro/intro.rpy", line 29, in keywords
-    if curr_mouse_xpos != curr_player_xpos:
-  File "game/scenes/intro/intro.rpy", line 31, in keywords
-    else:
-  File "game/scenes/intro/intro.rpy", line 32, in <module>
-    xpos curr_player_xpos[0]-local_xoffset
-TypeError: 'int' object has no attribute '__getitem__'
+  File "game/scenes/intro/intro.rpy", line 49, in execute
+    screen intro():
+  File "game/scenes/intro/intro.rpy", line 49, in execute
+    screen intro():
+  File "game/scenes/intro/intro.rpy", line 60, in execute
+    imagebutton:
+  File "renpy/ui.py", line 952, in _imagebutton
+    idle = choice(idle, idle_image, "idle", required=True)
+  File "renpy/ui.py", line 948, in choice
+    raise Exception("Imagebutton does not have a %s image." % (name,))
+Exception: Imagebutton does not have a idle image.
 
 Windows-10-10.0.19041
 Ren'Py 7.4.6.1693
 CGJ2021 1.0
-Fri Jul  9 21:55:20 2021
+Fri Jul  9 23:56:56 2021
