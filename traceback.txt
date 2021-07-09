@@ -1,0 +1,74 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 15, in script
+    call screen intro()
+  File "renpy/common/000statements.rpy", line 569, in execute_call_screen
+    store._return = renpy.call_screen(name, *args, **kwargs)
+  File "game/scenes/intro/intro.rpy", line 17, in execute
+    screen bgControl():
+  File "game/scenes/intro/intro.rpy", line 17, in execute
+    screen bgControl():
+  File "game/scenes/intro/intro.rpy", line 21, in execute
+    fixed:
+  File "game/scenes/intro/intro.rpy", line 22, in execute
+    bar value VariableValue('bar_xoffset', 100.0, action=SetVariable('global_xoffset', -tmp))
+  File "game/scenes/intro/intro.rpy", line 22, in keywords
+    bar value VariableValue('bar_xoffset', 100.0, action=SetVariable('global_xoffset', -tmp))
+  File "game/scenes/intro/intro.rpy", line 22, in <module>
+    bar value VariableValue('bar_xoffset', 100.0, action=SetVariable('global_xoffset', -tmp))
+NameError: name 'tmp' is not defined
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 15, in script
+    call screen intro()
+  File "renpy/ast.py", line 2009, in execute
+    self.call("execute")
+  File "renpy/ast.py", line 1997, in call
+    return renpy.statements.call(method, parsed, *args, **kwargs)
+  File "renpy/statements.py", line 278, in call
+    return method(parsed, *args, **kwargs)
+  File "renpy/common/000statements.rpy", line 569, in execute_call_screen
+    store._return = renpy.call_screen(name, *args, **kwargs)
+  File "renpy/exports.py", line 3057, in call_screen
+    rv = renpy.ui.interact(mouse="screen", type="screen", roll_forward=roll_forward)
+  File "renpy/ui.py", line 298, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "renpy/display/core.py", line 3276, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, **kwargs)
+  File "renpy/display/core.py", line 3693, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "renpy/display/core.py", line 567, in visit_all
+    d.visit_all(callback, seen)
+  File "renpy/display/core.py", line 567, in visit_all
+    d.visit_all(callback, seen)
+  File "renpy/display/core.py", line 567, in visit_all
+    d.visit_all(callback, seen)
+  File "renpy/display/screen.py", line 432, in visit_all
+    callback(self)
+  File "renpy/display/core.py", line 3693, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "renpy/display/screen.py", line 443, in per_interact
+    self.update()
+  File "renpy/display/screen.py", line 631, in update
+    self.screen.function(**self.scope)
+  File "game/scenes/intro/intro.rpy", line 17, in execute
+    screen bgControl():
+  File "game/scenes/intro/intro.rpy", line 17, in execute
+    screen bgControl():
+  File "game/scenes/intro/intro.rpy", line 21, in execute
+    fixed:
+  File "game/scenes/intro/intro.rpy", line 22, in execute
+    bar value VariableValue('bar_xoffset', 100.0, action=SetVariable('global_xoffset', -tmp))
+  File "game/scenes/intro/intro.rpy", line 22, in keywords
+    bar value VariableValue('bar_xoffset', 100.0, action=SetVariable('global_xoffset', -tmp))
+  File "game/scenes/intro/intro.rpy", line 22, in <module>
+    bar value VariableValue('bar_xoffset', 100.0, action=SetVariable('global_xoffset', -tmp))
+NameError: name 'tmp' is not defined
+
+Windows-10-10.0.19041
+Ren'Py 7.4.6.1693
+CGJ2021 1.0
+Fri Jul  9 21:24:05 2021
