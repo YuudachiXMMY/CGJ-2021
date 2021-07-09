@@ -8,15 +8,18 @@ default local_xoffset = 0
 
 screen mouseControl():
 
-    zorder 110
+    zorder 300
 
     modal True
 
-    on 'show'    action [    Hide('mainChacter'), Show('mainChacter'),
-                    SetVariable('curr_mouse_xpos', renpy.get_mouse_pos()[0]),
-                    SetVariable('tar_player_xpos', renpy.get_mouse_pos()[0]),
-                    SetVariable('local_xoffset', global_xoffset),
-                    Hide('mouseControl')]
+    text "Waling..."
+
+    on 'show' action [  Hide('mainChacter'), Show('mainChacter'),
+                        SetVariable('curr_mouse_xpos', renpy.get_mouse_pos()[0]),
+                        SetVariable('tar_player_xpos', renpy.get_mouse_pos()[0]),
+                        SetVariable('local_xoffset', global_xoffset)
+                        ]
+    timer 1.1 action Hide('mouseControl')
 
 screen bgControl():
 
@@ -44,7 +47,7 @@ screen mainChacter():
                 xpos curr_player_xpos - local_xoffset
                 linear 1.0 xpos tar_player_xpos - local_xoffset
 
-    timer 1.0 action SetVariable('curr_player_xpos', tar_player_xpos)
+    timer 0.01 action SetVariable('curr_player_xpos', tar_player_xpos)
 
 screen intro():
 
