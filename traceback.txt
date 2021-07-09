@@ -5,19 +5,21 @@ While running game code:
     call screen intro()
   File "renpy/common/000statements.rpy", line 569, in execute_call_screen
     store._return = renpy.call_screen(name, *args, **kwargs)
-  File "game/scenes/intro/intro.rpy", line 17, in execute
-    screen bgControl():
-  File "game/scenes/intro/intro.rpy", line 17, in execute
-    screen bgControl():
-  File "game/scenes/intro/intro.rpy", line 21, in execute
-    fixed:
-  File "game/scenes/intro/intro.rpy", line 22, in execute
-    bar value VariableValue('bar_xoffset', 100.0, action=SetVariable('global_xoffset', -tmp))
-  File "game/scenes/intro/intro.rpy", line 22, in keywords
-    bar value VariableValue('bar_xoffset', 100.0, action=SetVariable('global_xoffset', -tmp))
-  File "game/scenes/intro/intro.rpy", line 22, in <module>
-    bar value VariableValue('bar_xoffset', 100.0, action=SetVariable('global_xoffset', -tmp))
-NameError: name 'tmp' is not defined
+  File "game/scenes/intro/intro.rpy", line 24, in execute
+    screen mainChacter():
+  File "game/scenes/intro/intro.rpy", line 24, in execute
+    screen mainChacter():
+  File "game/scenes/intro/intro.rpy", line 28, in execute
+    add 'main_character_front':
+  File "game/scenes/intro/intro.rpy", line 28, in keywords
+    add 'main_character_front':
+  File "game/scenes/intro/intro.rpy", line 29, in keywords
+    if curr_mouse_xpos != curr_player_xpos:
+  File "game/scenes/intro/intro.rpy", line 31, in keywords
+    else:
+  File "game/scenes/intro/intro.rpy", line 32, in <module>
+    xpos curr_player_xpos[0]-local_xoffset
+TypeError: 'int' object has no attribute '__getitem__'
 
 -- Full Traceback ------------------------------------------------------------
 
@@ -54,21 +56,23 @@ Full traceback:
     self.update()
   File "renpy/display/screen.py", line 631, in update
     self.screen.function(**self.scope)
-  File "game/scenes/intro/intro.rpy", line 17, in execute
-    screen bgControl():
-  File "game/scenes/intro/intro.rpy", line 17, in execute
-    screen bgControl():
-  File "game/scenes/intro/intro.rpy", line 21, in execute
-    fixed:
-  File "game/scenes/intro/intro.rpy", line 22, in execute
-    bar value VariableValue('bar_xoffset', 100.0, action=SetVariable('global_xoffset', -tmp))
-  File "game/scenes/intro/intro.rpy", line 22, in keywords
-    bar value VariableValue('bar_xoffset', 100.0, action=SetVariable('global_xoffset', -tmp))
-  File "game/scenes/intro/intro.rpy", line 22, in <module>
-    bar value VariableValue('bar_xoffset', 100.0, action=SetVariable('global_xoffset', -tmp))
-NameError: name 'tmp' is not defined
+  File "game/scenes/intro/intro.rpy", line 24, in execute
+    screen mainChacter():
+  File "game/scenes/intro/intro.rpy", line 24, in execute
+    screen mainChacter():
+  File "game/scenes/intro/intro.rpy", line 28, in execute
+    add 'main_character_front':
+  File "game/scenes/intro/intro.rpy", line 28, in keywords
+    add 'main_character_front':
+  File "game/scenes/intro/intro.rpy", line 29, in keywords
+    if curr_mouse_xpos != curr_player_xpos:
+  File "game/scenes/intro/intro.rpy", line 31, in keywords
+    else:
+  File "game/scenes/intro/intro.rpy", line 32, in <module>
+    xpos curr_player_xpos[0]-local_xoffset
+TypeError: 'int' object has no attribute '__getitem__'
 
 Windows-10-10.0.19041
 Ren'Py 7.4.6.1693
 CGJ2021 1.0
-Fri Jul  9 21:24:05 2021
+Fri Jul  9 21:55:20 2021

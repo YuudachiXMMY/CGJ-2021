@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/scenes/intro/intro.rpy", line 33: imagebutton expects a non-empty block.
-    imagebutton:
-                ^
+File "game/scenes/intro/intro.rpy", line 30: u'transform' is not a keyword argument or valid child for the add statement.
+    transform:
+             ^
 
 Ren'Py Version: Ren'Py 7.4.6.1693
-Fri Jul  9 21:28:15 2021
+Fri Jul  9 22:07:15 2021
