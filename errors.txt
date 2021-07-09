@@ -2,12 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/scenes/intro/intro.rpy", line 15: Line is indented, but the preceding zorder statement does not expect a block. Please check this line's indentation.
-    action [    Hide('mainChacter'), Show('mainChacter'),
-    ^
-                        SetVariable('curr_mouse_xpos', renpy.get_mouse_pos()[0]),
-                        SetVariable('tar_player_xpos', renpy.get_mouse_pos()[0]),
-                        SetVariable('local_xoffset', global_xoffset)]
+File "game/scenes/intro/intro.rpy", line 78: u'XPOS' is not a keyword argument or valid child for the text statement.
+    text str(4/(walkSpeed+1)-2) XPOS 200
+                                    ^
 
 Ren'Py Version: Ren'Py 7.4.6.1693
-Fri Jul  9 23:55:57 2021
+Sat Jul 10 01:18:00 2021

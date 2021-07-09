@@ -5,13 +5,19 @@ While running game code:
     call screen intro()
   File "renpy/common/000statements.rpy", line 569, in execute_call_screen
     store._return = renpy.call_screen(name, *args, **kwargs)
-  File "game/scenes/intro/intro.rpy", line 49, in execute
+  File "game/scenes/intro/intro.rpy", line 106, in execute
     screen intro():
-  File "game/scenes/intro/intro.rpy", line 49, in execute
+  File "game/scenes/intro/intro.rpy", line 106, in execute
     screen intro():
-  File "game/scenes/intro/intro.rpy", line 60, in execute
-    imagebutton:
-Exception: Imagebutton does not have a idle image.
+  File "game/scenes/intro/intro.rpy", line 118, in execute
+    fixed:
+  File "game/scenes/intro/intro.rpy", line 119, in execute
+    if dev:
+  File "game/scenes/intro/intro.rpy", line 121, in execute
+    text str(10/(TwalkSpeed+1)-7) xpos 200 ypos 100 xoffset global_xoffset
+  File "game/scenes/intro/intro.rpy", line 121, in <module>
+    text str(10/(TwalkSpeed+1)-7) xpos 200 ypos 100 xoffset global_xoffset
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'int'
 
 -- Full Traceback ------------------------------------------------------------
 
@@ -48,19 +54,21 @@ Full traceback:
     self.update()
   File "renpy/display/screen.py", line 631, in update
     self.screen.function(**self.scope)
-  File "game/scenes/intro/intro.rpy", line 49, in execute
+  File "game/scenes/intro/intro.rpy", line 106, in execute
     screen intro():
-  File "game/scenes/intro/intro.rpy", line 49, in execute
+  File "game/scenes/intro/intro.rpy", line 106, in execute
     screen intro():
-  File "game/scenes/intro/intro.rpy", line 60, in execute
-    imagebutton:
-  File "renpy/ui.py", line 952, in _imagebutton
-    idle = choice(idle, idle_image, "idle", required=True)
-  File "renpy/ui.py", line 948, in choice
-    raise Exception("Imagebutton does not have a %s image." % (name,))
-Exception: Imagebutton does not have a idle image.
+  File "game/scenes/intro/intro.rpy", line 118, in execute
+    fixed:
+  File "game/scenes/intro/intro.rpy", line 119, in execute
+    if dev:
+  File "game/scenes/intro/intro.rpy", line 121, in execute
+    text str(10/(TwalkSpeed+1)-7) xpos 200 ypos 100 xoffset global_xoffset
+  File "game/scenes/intro/intro.rpy", line 121, in <module>
+    text str(10/(TwalkSpeed+1)-7) xpos 200 ypos 100 xoffset global_xoffset
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'int'
 
 Windows-10-10.0.19041
 Ren'Py 7.4.6.1693
 CGJ2021 1.0
-Fri Jul  9 23:56:56 2021
+Sat Jul 10 01:34:30 2021
