@@ -205,11 +205,14 @@ style input:
 ## https://www.renpy.org/doc/html/screen_special.html#choice
 
 screen choice(items):
+    modal True
+
     style_prefix "choice"
 
     vbox:
         for i in items:
             textbutton i.caption action i.action
+
 
 
 ## When this is true, menu captions will be spoken by the narrator. When false,
@@ -303,15 +306,22 @@ screen navigation():
 
             textbutton _("Start") action Start()
 
-        else:
+        # else:
 
-            textbutton _("History") action ShowMenu("history")
+            # textbutton _("History") action ShowMenu("history")
 
-            textbutton _("Save") action ShowMenu("save")
+            # textbutton _("Save") action ShowMenu("save")
 
-        textbutton _("Load") action ShowMenu("load")
+        # textbutton _("Load") action ShowMenu("load")
 
-        textbutton _("Preferences") action ShowMenu("preferences")
+        textbutton _("Settings") action ShowMenu("preferences")
+
+        if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
+
+            ## Help isn't necessary or relevant to mobile devices.
+            textbutton _("Help") action ShowMenu("help")
+
+        textbutton _("About") action ShowMenu("about")
 
         if _in_replay:
 
@@ -321,18 +331,11 @@ screen navigation():
 
             textbutton _("Main Menu") action MainMenu()
 
-        textbutton _("About") action ShowMenu("about")
-
-        if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
-
-            ## Help isn't necessary or relevant to mobile devices.
-            textbutton _("Help") action ShowMenu("help")
-
         if renpy.variant("pc"):
 
             ## The quit button is banned on iOS and unnecessary on Android and
             ## Web.
-            textbutton _("Quit") action Quit(confirm=not main_menu)
+            textbutton _("Quit Game") action Quit(confirm=not main_menu)
 
 
 style navigation_button is gui_button
@@ -731,19 +734,19 @@ screen preferences():
                         textbutton _("Window") action Preference("display", "window")
                         textbutton _("Fullscreen") action Preference("display", "fullscreen")
 
-                vbox:
-                    style_prefix "radio"
-                    label _("Rollback Side")
-                    textbutton _("Disable") action Preference("rollback side", "disable")
-                    textbutton _("Left") action Preference("rollback side", "left")
-                    textbutton _("Right") action Preference("rollback side", "right")
+                # vbox:
+                #     style_prefix "radio"
+                #     label _("Rollback Side")
+                #     textbutton _("Disable") action Preference("rollback side", "disable")
+                #     textbutton _("Left") action Preference("rollback side", "left")
+                #     textbutton _("Right") action Preference("rollback side", "right")
 
-                vbox:
-                    style_prefix "check"
-                    label _("Skip")
-                    textbutton _("Unseen Text") action Preference("skip", "toggle")
-                    textbutton _("After Choices") action Preference("after choices", "toggle")
-                    textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
+                # vbox:
+                #     style_prefix "check"
+                #     label _("Skip")
+                #     textbutton _("Unseen Text") action Preference("skip", "toggle")
+                #     textbutton _("After Choices") action Preference("after choices", "toggle")
+                #     textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
 
                 ## Additional vboxes of type "radio_pref" or "check_pref" can be
                 ## added here, to add additional creator-defined preferences.
@@ -754,15 +757,15 @@ screen preferences():
                 style_prefix "slider"
                 box_wrap True
 
-                vbox:
+                # vbox:
 
-                    label _("Text Speed")
+                #     label _("Text Speed")
 
-                    bar value Preference("text speed")
+                #     bar value Preference("text speed")
 
-                    label _("Auto-Forward Time")
+                #     label _("Auto-Forward Time")
 
-                    bar value Preference("auto-forward time")
+                #     bar value Preference("auto-forward time")
 
                 vbox:
 
@@ -883,38 +886,38 @@ screen history():
 
     tag menu
 
-    ## Avoid predicting this screen, as it can be very large.
-    predict False
+    # ## Avoid predicting this screen, as it can be very large.
+    # predict False
 
-    use game_menu(_("History"), scroll=("vpgrid" if gui.history_height else "viewport"), yinitial=1.0):
+    # use game_menu(_("History"), scroll=("vpgrid" if gui.history_height else "viewport"), yinitial=1.0):
 
-        style_prefix "history"
+    #     style_prefix "history"
 
-        for h in _history_list:
+    #     for h in _history_list:
 
-            window:
+    #         window:
 
-                ## This lays things out properly if history_height is None.
-                has fixed:
-                    yfit True
+    #             ## This lays things out properly if history_height is None.
+    #             has fixed:
+    #                 yfit True
 
-                if h.who:
+    #             if h.who:
 
-                    label h.who:
-                        style "history_name"
-                        substitute False
+    #                 label h.who:
+    #                     style "history_name"
+    #                     substitute False
 
-                        ## Take the color of the who text from the Character, if
-                        ## set.
-                        if "color" in h.who_args:
-                            text_color h.who_args["color"]
+    #                     ## Take the color of the who text from the Character, if
+    #                     ## set.
+    #                     if "color" in h.who_args:
+    #                         text_color h.who_args["color"]
 
-                $ what = renpy.filter_text_tags(h.what, allow=gui.history_allow_tags)
-                text what:
-                    substitute False
+    #             $ what = renpy.filter_text_tags(h.what, allow=gui.history_allow_tags)
+    #             text what:
+    #                 substitute False
 
-        if not _history_list:
-            label _("The dialogue history is empty.")
+    #     if not _history_list:
+    #         label _("The dialogue history is empty.")
 
 
 ## This determines what tags are allowed to be displayed on the history screen.
@@ -1002,11 +1005,11 @@ screen keyboard_help():
 
     hbox:
         label _("Enter")
-        text _("Advances dialogue and activates the interface.")
+        text _("Activates the interface.")
 
-    hbox:
-        label _("Space")
-        text _("Advances dialogue without selecting choices.")
+    # hbox:
+    #     label _("Space")
+    #     text _("Advances dialogue without selecting choices.")
 
     hbox:
         label _("Arrow Keys")
@@ -1016,21 +1019,21 @@ screen keyboard_help():
         label _("Escape")
         text _("Accesses the game menu.")
 
-    hbox:
-        label _("Ctrl")
-        text _("Skips dialogue while held down.")
+    # hbox:
+    #     label _("Ctrl")
+    #     text _("Skips dialogue while held down.")
 
-    hbox:
-        label _("Tab")
-        text _("Toggles dialogue skipping.")
+    # hbox:
+    #     label _("Tab")
+    #     text _("Toggles dialogue skipping.")
 
-    hbox:
-        label _("Page Up")
-        text _("Rolls back to earlier dialogue.")
+    # hbox:
+    #     label _("Page Up")
+    #     text _("Rolls back to earlier dialogue.")
 
-    hbox:
-        label _("Page Down")
-        text _("Rolls forward to later dialogue.")
+    # hbox:
+    #     label _("Page Down")
+    #     text _("Rolls forward to later dialogue.")
 
     hbox:
         label "H"
@@ -1040,16 +1043,16 @@ screen keyboard_help():
         label "S"
         text _("Takes a screenshot.")
 
-    hbox:
-        label "V"
-        text _("Toggles assistive {a=https://www.renpy.org/l/voicing}self-voicing{/a}.")
+    # hbox:
+    #     label "V"
+    #     text _("Toggles assistive {a=https://www.renpy.org/l/voicing}self-voicing{/a}.")
 
 
 screen mouse_help():
 
     hbox:
         label _("Left Click")
-        text _("Advances dialogue and activates the interface.")
+        text _("Activates the interface.")
 
     hbox:
         label _("Middle Click")
@@ -1059,13 +1062,13 @@ screen mouse_help():
         label _("Right Click")
         text _("Accesses the game menu.")
 
-    hbox:
-        label _("Mouse Wheel Up\nClick Rollback Side")
-        text _("Rolls back to earlier dialogue.")
+    # hbox:
+    #     label _("Mouse Wheel Up\nClick Rollback Side")
+    #     text _("Rolls back to earlier dialogue.")
 
-    hbox:
-        label _("Mouse Wheel Down")
-        text _("Rolls forward to later dialogue.")
+    # hbox:
+    #     label _("Mouse Wheel Down")
+    #     text _("Rolls forward to later dialogue.")
 
 
 screen gamepad_help():

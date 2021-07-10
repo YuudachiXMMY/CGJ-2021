@@ -2,9 +2,11 @@
 errors listed below, and try again.
 
 
-File "game/scenes/intro/intro.rpy", line 78: u'XPOS' is not a keyword argument or valid child for the text statement.
-    text str(4/(walkSpeed+1)-2) XPOS 200
-                                    ^
+The label train2_key2 is defined twice, at File "game/script.rpy", line 160:
+label train2_key2:
+and File "game/script.rpy", line 165:
+label train2_key2:
+
 
 Ren'Py Version: Ren'Py 7.4.6.1693
-Sat Jul 10 01:18:00 2021
+Sat Jul 10 21:11:48 2021

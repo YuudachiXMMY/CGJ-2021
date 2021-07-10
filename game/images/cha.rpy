@@ -3,53 +3,33 @@ init offset = -2
 default walkSpeed = 0.2
 
 image main_character_front:
-    zoom 0.4 xanchor 0.5
-    ypos 50
+    xanchor 0.5 ypos 303
     'images/cha/f.png'
 
 image main_cahracter_back:
-    zoom 0.4 xanchor 0.5
-    ypos 50
+    xanchor 0.5 ypos 303
     'images/cha/b.png'
 
 image main_cahracter_walk_left:
-    zoom 0.4 xanchor 0.5
-    ypos 50
-    'images/cha/l/01.png'
-    linear walkSpeed
-    'images/cha/l/02.png'
-    linear walkSpeed
-    'images/cha/l/03.png'
-    linear walkSpeed
-    'images/cha/l/04.png'
-    linear walkSpeed
-    'images/cha/l/05.png'
-    linear walkSpeed
-    'images/cha/l/06.png'
-    linear walkSpeed
-    'images/cha/l/07.png'
-    linear walkSpeed
-    'images/cha/l/08.png'
-    linear walkSpeed
+    xanchor 0.5 ypos 303
+    'images/cha/l/1.png'
+    linear walkSpeed/2
+    'images/cha/l/2.png'
+    linear walkSpeed/2
+    'images/cha/l/3.png'
+    linear walkSpeed/2
+    'images/cha/l/4.png'
+    linear walkSpeed/2
     repeat
 
 image main_cahracter_walk_right:
-    zoom 0.4 xanchor 0.5
-    ypos 50
-    'images/cha/r/01.png'
-    linear walkSpeed
-    'images/cha/r/02.png'
-    linear walkSpeed
-    'images/cha/r/03.png'
-    linear walkSpeed
-    'images/cha/r/04.png'
-    linear walkSpeed
-    'images/cha/r/05.png'
-    linear walkSpeed
-    'images/cha/r/06.png'
-    linear walkSpeed
-    'images/cha/r/07.png'
-    linear walkSpeed
-    'images/cha/r/08.png'
-    linear walkSpeed
+    xanchor 0.5 ypos 303
+    'images/cha/r/1.png'
+    linear walkSpeed/2
+    'images/cha/r/2.png'
+    linear walkSpeed/2
+    'images/cha/r/3.png'
+    linear walkSpeed/2
+    'images/cha/r/4.png'
+    linear walkSpeed/2
     repeat
