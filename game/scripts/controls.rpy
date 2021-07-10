@@ -41,6 +41,7 @@ screen mouseControl():
 
     timer (8-0.4) / (1+(TwalkSpeed/0.06) ** 2.4) + 0.4  action Hide('mouseControl')
 
+
 screen bgControl(width):
 
     zorder 111

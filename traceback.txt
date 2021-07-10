@@ -1,31 +1,17 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 270, in script
-    call screen train3()
+  File "game/script.rpy", line 132, in script
+    call screen train1()
   File "renpy/common/000statements.rpy", line 569, in execute_call_screen
     store._return = renpy.call_screen(name, *args, **kwargs)
-  File "game/scripts/train3.rpy", line 16, in execute
-    screen train3():
-  File "game/scripts/train3.rpy", line 16, in execute
-    screen train3():
-  File "game/scripts/train3.rpy", line 83, in execute
-    fixed:
-  File "game/scripts/train3.rpy", line 108, in execute
-    if (curr_player_xpos > 1200 and curr_player_xpos < 1535): #and not train3_examine_room3:
-  File "game/scripts/train3.rpy", line 111, in execute
-    text str("03：33 停驶3分钟 暗号：3个火柴人 Match "):
-  File "game/scripts/train3.rpy", line 111, in keywords
-    text str("03：33 停驶3分钟 暗号：3个火柴人 Match "):
-  File "game/scripts/train3.rpy", line 112, in <module>
-    ypos 75+25*fi_train3_examine_room3 xpos 300 color "#fff"
-NameError: name 'fi_train3_examine_room3' is not defined
+TypeError: 'int' object is not callable
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 270, in script
-    call screen train3()
+  File "game/script.rpy", line 132, in script
+    call screen train1()
   File "renpy/ast.py", line 2009, in execute
     self.call("execute")
   File "renpy/ast.py", line 1997, in call
@@ -40,39 +26,11 @@ Full traceback:
     rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
   File "renpy/display/core.py", line 3276, in interact
     repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, **kwargs)
-  File "renpy/display/core.py", line 3693, in interact_core
-    root_widget.visit_all(lambda i : i.per_interact())
-  File "renpy/display/core.py", line 567, in visit_all
-    d.visit_all(callback, seen)
-  File "renpy/display/core.py", line 567, in visit_all
-    d.visit_all(callback, seen)
-  File "renpy/display/core.py", line 567, in visit_all
-    d.visit_all(callback, seen)
-  File "renpy/display/screen.py", line 432, in visit_all
-    callback(self)
-  File "renpy/display/core.py", line 3693, in <lambda>
-    root_widget.visit_all(lambda i : i.per_interact())
-  File "renpy/display/screen.py", line 443, in per_interact
-    self.update()
-  File "renpy/display/screen.py", line 631, in update
-    self.screen.function(**self.scope)
-  File "game/scripts/train3.rpy", line 16, in execute
-    screen train3():
-  File "game/scripts/train3.rpy", line 16, in execute
-    screen train3():
-  File "game/scripts/train3.rpy", line 83, in execute
-    fixed:
-  File "game/scripts/train3.rpy", line 108, in execute
-    if (curr_player_xpos > 1200 and curr_player_xpos < 1535): #and not train3_examine_room3:
-  File "game/scripts/train3.rpy", line 111, in execute
-    text str("03：33 停驶3分钟 暗号：3个火柴人 Match "):
-  File "game/scripts/train3.rpy", line 111, in keywords
-    text str("03：33 停驶3分钟 暗号：3个火柴人 Match "):
-  File "game/scripts/train3.rpy", line 112, in <module>
-    ypos 75+25*fi_train3_examine_room3 xpos 300 color "#fff"
-NameError: name 'fi_train3_examine_room3' is not defined
+  File "renpy/display/core.py", line 3633, in interact_core
+    new_widget=layers_root)
+TypeError: 'int' object is not callable
 
 Windows-10-10.0.19041
 Ren'Py 7.4.6.1693
 CGJ2021 1.0
-Sun Jul 11 00:22:37 2021
+Sun Jul 11 00:35:14 2021

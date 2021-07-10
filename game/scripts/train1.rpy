@@ -34,7 +34,6 @@ screen train1():
     on 'show' action Show('train1_bg_front')
 
     imagebutton:
-        activate_sound "music/item.wav"
         idle "gui/null_mouseControll.png"
         action Show('mouseControl')
 
