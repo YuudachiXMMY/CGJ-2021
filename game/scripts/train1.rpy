@@ -1,18 +1,18 @@
 default train1_examine0 = False
 default train1_examine1 = False
-default train1_examine2 = False
 default train1_examine_window = False
 default train1_examine_string = True
 default train1_examine_burnString = False
 default train1_examine_bone = False
 
-default fi_train1_examine0 = 0
-default fi_train1_examine1 = 0
-default fi_train1_examine2 = 0
-default fi_train1_examine_window = 0
-default fi_train1_examine_string = 0
 default fi_train1_examine_burnString = 0
 default fi_train1_examine_bone = 0
+default fi_train1_examine0 = 0
+default fi_train1_examine1 = 0
+default fi_train1_examine_string = 0
+
+define fi_train1_examine_window = 7
+
 
 screen train1_bg_front:
     zorder 101
@@ -34,43 +34,21 @@ screen train1():
     on 'show' action Show('train1_bg_front')
 
     imagebutton:
+        activate_sound "music/item.wav"
         idle "gui/null_mouseControll.png"
         action Show('mouseControl')
 
-    fixed:
-        if train1_burnString and not train1_examine_burnString:
-            text str("用手擦拭祷告桌，桌上堆叠着破损的餐具，书籍的残骸，在一片狼藉中，找到一把破旧的铁钥匙。"):
-                ypos 75 xpos 200 color "#fff"
-            timer 3 action SetVariable('train1_examine_burnString', True)
-        if train1_bone and not train1_examine_bone:
-            text str("车厢变亮了一些 ，桌下盖着厚厚的幕布。"):
-                ypos 75 xpos 200 color "#fff"
-            text str("揭开后，发现是一具骸骨，和残留的绳絮。"):
-                ypos 75 xpos 200 color "#fff"
-            timer 3 action SetVariable('train1_examine_bone', True)
-        if train1_examine == 0 and not train1_examine0:
-            text str("拿起蜡烛，墙上的文字辨别不清是涂鸦还是什么文字。"):
-                ypos 75 xpos 200 color "#fff"
-            text str("一个祷告桌，盖满了黑色的粉尘。"):
-                ypos 75 xpos 200 color "#fff"
-            timer 3 action SetVariable('train1_examine0', True)
-        if train1_examine == 1 and not train1_examine1:
-            text str("发现了一件破损衣服，看似有些眼熟。。。好像是件制服。"):
-                ypos 75 xpos 200 color "#fff"
-            timer 3 action SetVariable('train1_examine1', True)
-        if (curr_player_xpos > 1425 and curr_player_xpos < 1990) and not train1_examine_window:
-            text str("车窗被钢条焊斯，透过玻璃窗户向外看去，黑漆漆的一片，没有点光。"):
-                ypos 75 xpos 200 color "#fff"
-            timer 3 action SetVariable('train1_examine_window', True)
-        if not train1_examine_string:
-            text str("断了一截的麻绳 或许可以拿来燃烧"):
-                ypos 75 xpos 200 color "#fff"
-            timer 3 action SetVariable('train1_examine_string', True)
-
-
+    if dev:
+        text str(text_i) xpos 500 ypos 25
+        text str(fi_train1_examine_burnString) xpos 500 ypos 50
+        text str(fi_train1_examine_bone) xpos 500 ypos 75
+        text str(fi_train1_examine0) xpos 500 ypos 100
+        text str(fi_train1_examine1) xpos 500 ypos 125
+        text str(fi_train1_examine_string) xpos 500 ypos 150
 
     # Candle
     imagebutton:
+        activate_sound "music/item.wav"
         xoffset global_xoffset
         xpos 521 ypos 260
         auto 'train1_candle_btn_%s'
@@ -84,13 +62,16 @@ screen train1():
 
     if not train1_string:
         imagebutton:
+            activate_sound "music/item.wav"
             xoffset global_xoffset
             xpos 1585 ypos 584
             auto "train1_string_btn_%s"
-            action SetVariable("train1_examine_string", False), SetVariable("train1_string", True), SetVariable("string_number", string_number+1)
+            action [SetVariable("train1_examine_string", False), SetVariable("train1_string", True), SetVariable("string_number", string_number+1),
+                SetVariable('text_i', text_i+1), SetVariable('fi_train1_examine_string',text_i)]
 
     if train1_burnString and not train1_key_popped:
-        timer 0.1 action [SetVariable('train1_key_popped', True), Show("item", name='bg/train1/key.png', log="一把钥匙")]
+        timer 0.1 action [SetVariable('train1_key_popped', True), Show("item", name='bg/train1/key.png', log="一把钥匙"),
+                SetVariable('text_i', text_i+1), SetVariable('fi_train1_examine_burnString',text_i)]
 
     # on 'show' action Show('item', name="1")
 
@@ -98,6 +79,7 @@ screen train1():
     # # if curr_player_xpos > 1100:
     add 'train1_train2_btn' xpos 2500 - 197 xoffset global_xoffset
     imagebutton:
+        activate_sound "music/item.wav"
         xpos 2500 - 197 xoffset global_xoffset
         auto 'train1_train2_btn_%s'
         action [
@@ -115,6 +97,38 @@ screen train1():
                         Hide('train1'),
                         Return(2)]
 
+
+    fixed:
+        if train1_burnString and not train1_examine_burnString:
+            text str("用手擦拭祷告桌，桌上堆叠着破损的餐具，书籍的残骸，在一片狼藉中，找到一把破旧的铁钥匙。"):
+                ypos 75+25*fi_train1_examine_burnString  xpos 200 color "#fff"
+            timer 3 action SetVariable('train1_examine_burnString', True), SetVariable('text_i', text_i-1)
+        if train1_bone and not train1_examine_bone:
+            text str("车厢变亮了一些 ，桌下盖着厚厚的幕布。"):
+                ypos 75+25*fi_train1_examine_bone  xpos 200 color "#fff"
+            text str("揭开后，发现是一具骸骨，和残留的绳絮。"):
+                ypos 75+25*(fi_train1_examine_bone+1)  xpos 200 color "#fff"
+            timer 3 action SetVariable('train1_examine_bone', True), SetVariable('text_i', text_i-2)
+        if train1_examine == 0 and not train1_examine0:
+            text str("拿起蜡烛，墙上的文字辨别不清是涂鸦还是什么文字。"):
+                ypos 75+25*train1_examine0  xpos 200 color "#fff"
+            text str("一个祷告桌，盖满了黑色的粉尘。"):
+                ypos 75+25*(train1_examine0+1)  xpos 200 color "#fff"
+            timer 3 action SetVariable('train1_examine0', True), SetVariable('text_i', text_i-2)
+        if train1_examine == 1 and not train1_examine1:
+            text str("发现了一件破损衣服，看似有些眼熟。。。好像是件制服。"):
+                ypos 75+25*fi_train1_examine1  xpos 200 color "#fff"
+            timer 3 action SetVariable('train1_examine1', True), SetVariable('text_i', text_i-1)
+        if (curr_player_xpos > 1425 and curr_player_xpos < 1990): # and not train1_examine_window:
+            # $text_i = text_i + 1
+            # $fi_train1_examine_window = text_i
+            text str("车窗被钢条焊斯，透过玻璃窗户向外看去，黑漆漆的一片，没有点光。"):
+                ypos 75+25*fi_train1_examine_window  xpos 200 color "#fff"
+            timer 3 action SetVariable('train1_examine_window', True)
+        if not train1_examine_string:
+            text str("断了一截的麻绳 或许可以拿来燃烧"):
+                ypos 75+25*fi_train1_examine_string  xpos 200 color "#fff"
+            timer 3 action SetVariable('train1_examine_string', True), SetVariable('text_i', text_i-1)
 
     ############################################################################
     # dev

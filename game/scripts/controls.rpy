@@ -49,15 +49,20 @@ screen bgControl(width):
         if width - 1280 > 0:
             style_prefix 'bgControl'
             xpos 493
-            if renpy.get_screen('map1'):
-                bar value VariableValue('bar_xoffset', width-1280, action=[
-                    SetVariable('global_xoffset', -bar_xoffset),
-                    Hide('map1_bg_front'), Show('map1_bg_front')
-                ])
             if renpy.get_screen('train1'):
                 bar value VariableValue('bar_xoffset', width-1280, action=[
                     SetVariable('global_xoffset', -bar_xoffset),
                     Hide('train1_bg_front'), Show('train1_bg_front')
+                ])
+            elif renpy.get_screen('train2'):
+                bar value VariableValue('bar_xoffset', width-1280, action=[
+                    SetVariable('global_xoffset', -bar_xoffset),
+                    Hide('train2_bg_front'), Show('train2_bg_front')
+                ])
+            elif renpy.get_screen('train3'):
+                bar value VariableValue('bar_xoffset', width-1280, action=[
+                    SetVariable('global_xoffset', -bar_xoffset),
+                    Hide('train3_bg_front'), Show('train3_bg_front')
                 ])
             else:
                 bar value VariableValue('bar_xoffset', width-1280, action=[
@@ -72,6 +77,9 @@ style bgControl_bar:
 screen mainChacter():
 
     zorder 100
+
+    on 'show' action Play('sound', 'music/walk.mp3')
+    timer (8-0.4) / (1+(TwalkSpeed/0.06) ** 2.4) action Stop('sound')
 
     $ diff = (tar_player_xpos - player_xoffset) - curr_player_xpos
 
@@ -113,6 +121,9 @@ screen item(name, log):
 
     add name align(0.5, 0.5)
     text _(str(log)) align(0.5,0.6)
+
+
+
 
 
 ## Test Map Demo

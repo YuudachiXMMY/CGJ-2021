@@ -2,11 +2,9 @@
 errors listed below, and try again.
 
 
-The label train2_key2 is defined twice, at File "game/script.rpy", line 160:
-label train2_key2:
-and File "game/script.rpy", line 165:
-label train2_key2:
-
+File "game/scripts/controls.rpy", line 77: u'linear' is not a keyword argument or valid child for the screen statement.
+    linear (8-0.4) / (1+(TwalkSpeed/0.06) ** 2.4) action Stop('sound')
+          ^
 
 Ren'Py Version: Ren'Py 7.4.6.1693
-Sat Jul 10 21:11:48 2021
+Sun Jul 11 00:11:59 2021

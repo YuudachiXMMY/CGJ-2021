@@ -30,8 +30,14 @@ default train2_box = False
 default train2_box_popped = False
 default train2_unlock =False
 
+# Train 3
+default train3_burnString = False
+
 # String
 default string_number = 0
+
+# Text Index
+default text_i = 0
 
 # The game starts here.
 
@@ -50,11 +56,16 @@ label start:
 
     $train1_examine0 = False
     $train1_examine1 = False
-    $train1_examine2 = False
     $train1_examine_window = False
     $train1_examine_string = True
     $train1_examine_burnString = False
     $train1_examine_bone = False
+
+    $fi_train1_examine_burnString = 0
+    $fi_train1_examine_bone = 0
+    $fi_train1_examine0 = 0
+    $fi_train1_examine1 = 0
+    $fi_train1_examine_string = 0
 
     # Train2
     $first_train2 = True
@@ -63,7 +74,7 @@ label start:
     $train2_burnString = False
     $train2_box = False
     $train2_box_popped = False
-    $train2_unlock = False
+    $train2_unlock =False
 
     $train2_examine0 = False
     $train2_examine1 = False
@@ -71,14 +82,28 @@ label start:
     $train2_examine_string = False
     $train2_examine_train = False
     $train2_examine_burngString = False
-    $train2_examine_ske1 = False
-    $train2_examine_ske2 = False
+    $train2_examine_ske0 = True
+    $train2_examine_ske1 = True
+    $train2_examine_ske2 = True
     $train2_examine_ske_bs = False
     $train2_examine_box = False
+
+    $fi_first_train2 = 0
+    $fi_train2_examine_string = 0
+    $fi_train2_examine_burngString = 0
+    $fi_train2_examine_ske1 = 0
+    $fi_train2_examine_ske2 = 0
+    $fi_trani2_examine_ske_bs = 0
+
+    # Else
+    $string_number = 0
+    $text_i = 0
 
     jump intro
 
 label intro:
+    play music 'music/bgm1.mp3'
+
     $firstShowed = True
 
     $bar_xoffset = 0
@@ -107,25 +132,31 @@ label _train1():
     call screen train1()
 
     if _return == 2:
+        $text_i = 0
         if first_train2:
-            $first_train2 = False
             jump train2
         else:
             jump _train2
 
 label train1_choice:
-    if train1_string and string_number > 0:
+    if train1_examine >= 1 and train1_string and string_number > 0:
         menu:
             "太黑了，什么也看不见，要点燃绳子吗?"
 
             '摸索摸索':
                 $train1_examine = train1_examine + 1
                 if train1_examine == 0:
+                    $text_i = text_i + 2
+                    $fi_train1_examine0 = text_i
                     jump _train1
                 if train1_examine == 1:
+                    $text_i = text_i + 1
+                    $fi_train1_examine1 = text_i
                     $train1_cloth = True
                 if train1_examine == 2:
                     $train1_bone = True
+                    $text_i = text_i + 2
+                    $fi_train1_examine_bone = text_i
                 if train1_examine >= 1 and train1_burnString:
                     $train1_key = True
                 jump _train1
@@ -140,11 +171,17 @@ label train1_choice:
             '摸索摸索':
                 $train1_examine = train1_examine + 1
                 if train1_examine == 0:
+                    $text_i = text_i + 2
+                    $fi_train1_examine0 = text_i
                     jump _train1
                 if train1_examine == 1:
+                    $text_i = text_i + 1
+                    $fi_train1_examine1 = text_i
                     $train1_cloth = True
                 if train1_examine == 2:
                     $train1_bone = True
+                    $text_i = text_i + 2
+                    $fi_train1_examine_bone = text_i
                 if train1_examine >= 1 and train1_burnString:
                     $train1_key = True
                 jump _train1
@@ -152,6 +189,7 @@ label train1_choice:
                 jump _train1
 
 label train2:
+    play music "music/bgm2.wav"
 
     $firstShowed = True
 
@@ -179,13 +217,22 @@ label _train2:
     if failExamin:
         $failExamin=False
         "摸索失败"
+
+    if first_train2:
+        $text_i = text_i + 1
+        $fi_first_train2 = text_i
+    $first_train2 = False
+
     call screen train2()
 
     if _return == 1:
+        $text_i = 0
         jump train1
 
     if _return == 3:
-        '这个铁盒是谁的呢？'
+        if train2_box:
+            '这个铁盒是谁的呢？'
+        $text_i = 0
         jump train3
 
 label train2_choice:
@@ -196,24 +243,80 @@ label train2_choice:
             "点燃绳子":
                 $string_number = string_number - 1
                 $train2_burnString = True
+                $text_i = text_i + 1
+                $fi_train2_examine_burngString = text_i
                 jump _train2
 
             "不点燃绳子":
                 $train2_burnString = False
                 jump _train2
 
-    return
-
-
 
 label train3:
+    play music "music/bgm3.wav"
 
     $firstShowed = True
+
+    window hide
+    pause 2
+
+    '一扇黑色的铁门挡在我的面前。'
 
     jump _train3
 
 label _train3:
-    ''
+    if failExamin:
+        "摸索失败"
+    call screen train3()
+
+    if _return == 2:
+        $text_i = 0
+        if first_train2:
+            jump train2
+        else:
+            jump _train2
+
+
+label train3_choice:
+    if string_number == 2:
+        menu:
+            "走进房间":
+                jump train3_c1
+
+            "走向绳索":
+                jump train3_c2
+
+            "返回":
+                jump _train3
+    else:
+        menu:
+            "走进房间":
+                jump train3_c1
+
+            "返回":
+                jump _train3
+
+label train3_c1:
+    play music "music/end.mp3"
+    "火柴人的灵魂 永远停留在车上。"
+
+    'END'
+    stop sound
+    stop music
+    stop voice
+    return
+
+label train3_c2:
+    play music "music/end.mp3"
+    "列车的大门被关上，车缓缓发动起来，火柴人，消失了。"
+
+    'END'
+    stop sound
+    stop music
+    stop voice
+    return
+
+
 
 
 # label map1:

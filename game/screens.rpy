@@ -211,7 +211,8 @@ screen choice(items):
 
     vbox:
         for i in items:
-            textbutton i.caption action i.action
+            textbutton i.caption action i.action:
+                activate_sound "music/item.wav"
 
 
 
@@ -304,7 +305,8 @@ screen navigation():
 
         if main_menu:
 
-            textbutton _("Start") action Start()
+            textbutton _("Start") action Start():
+                activate_sound "music/item.wav"
 
         # else:
 
@@ -314,28 +316,34 @@ screen navigation():
 
         # textbutton _("Load") action ShowMenu("load")
 
-        textbutton _("Settings") action ShowMenu("preferences")
+        textbutton _("Settings") action ShowMenu("preferences"):
+                activate_sound "music/item.wav"
 
         if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
             ## Help isn't necessary or relevant to mobile devices.
-            textbutton _("Help") action ShowMenu("help")
+            textbutton _("Help") action ShowMenu("help"):
+                activate_sound "music/item.wav"
 
-        textbutton _("About") action ShowMenu("about")
+        textbutton _("About") action ShowMenu("about"):
+            activate_sound "music/item.wav"
 
         if _in_replay:
 
-            textbutton _("End Replay") action EndReplay(confirm=True)
+            textbutton _("End Replay") action EndReplay(confirm=True):
+                activate_sound "music/item.wav"
 
         elif not main_menu:
 
-            textbutton _("Main Menu") action MainMenu()
+            textbutton _("Main Menu") action MainMenu():
+                activate_sound "music/item.wav"
 
         if renpy.variant("pc"):
 
             ## The quit button is banned on iOS and unnecessary on Android and
             ## Web.
-            textbutton _("Quit Game") action Quit(confirm=not main_menu)
+            textbutton _("Quit Game") action Quit(confirm=not main_menu):
+                activate_sound "music/item.wav"
 
 
 style navigation_button is gui_button
@@ -361,6 +369,8 @@ screen main_menu():
     tag menu
 
     add gui.main_menu_background
+
+    on 'show' action Play("music", 'music/bgm1.mp3')
 
     ## This empty frame darkens the main menu.
     frame:
@@ -1163,8 +1173,10 @@ screen confirm(message, yes_action, no_action):
                 xalign 0.5
                 spacing 100
 
-                textbutton _("Yes") action yes_action
-                textbutton _("No") action no_action
+                textbutton _("Yes") action yes_action:
+                    activate_sound "music/item.wav"
+                textbutton _("No") action no_action:
+                    activate_sound "music/item.wav"
 
     ## Right-click and escape answer "no".
     key "game_menu" action no_action

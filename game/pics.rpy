@@ -88,7 +88,6 @@ image train1_string_btn_hover:
 
 
 # Train2
-
 image train2_bg:
     'bg/train2/bg.jpg'
 
@@ -160,8 +159,59 @@ image train2_ske_btn_hover:
 
 
 
+# train3
+image train3_bg:
+    'bg/train3/bg.jpg'
 
+image train3_bg_ani:
+    alpha 0.5
+    'bg/train3/bg_ani.jpg'
+    linear 1.5 alpha 1.0
+    pause 0.1
+    linear 1.5 alpha 0.5
+    pause 0.5
+    repeat
 
+image train3_bg_front:
+    'bg/train3/bg_front.png'
+
+image train3_bg_front_ani:
+    alpha 0.2
+    'bg/train3/bg_front_ani.png'
+    linear 1.5 alpha 0.9
+    pause 0.1
+    linear 1.5 alpha 0.2
+    pause 0.5
+    repeat
+
+image train3_train2_btn:
+    "bg/train3/train2_btn_idle.png"
+
+image train3_train2_btn_idle:
+    alpha 0.6
+    "bg/train3/train2_btn_hover.png"
+    linear 1.5 alpha 0.9
+    pause 0.1
+    linear 1.5 alpha 0.6
+    pause 0.5
+    repeat
+
+image train3_train2_btn_hover:
+    alpha 1.0
+    "bg/train3/train2_btn_hover.png"
+
+image train3_post_btn_idle:
+    "bg/train3/post_idle.png"
+
+image train3_post_btn_hover:
+    "bg/train3/post_hover.png"
+
+image train3_door3_btn_idle:
+    "bg/train3/door3_idle.png"
+
+image train3_door3_btn_hover:
+    'train3_door3_btn_idle'
+    # "bg/train3/door3_hover.png"
 
 
 
