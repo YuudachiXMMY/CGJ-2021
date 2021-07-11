@@ -4,6 +4,8 @@ __pycache__/
 *$py.class
 
 # RenPy Files
+*.rpyc
+*.rpyb
 errors.txt
 log.txt
 project.json

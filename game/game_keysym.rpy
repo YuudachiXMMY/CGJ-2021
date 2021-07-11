@@ -3,6 +3,7 @@ init offset = -999
 init:
     $ config.keymap['rollback'].remove('mousedown_4')
     $ config.keymap['rollforward'].remove('mousedown_5')
+    $ config.keymap['game_menu'].remove('mouseup_3')
 
 
 # define config.pad_bindings = {
