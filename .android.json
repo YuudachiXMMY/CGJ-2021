@@ -1,0 +1,1 @@
+{"layout": null, "package": "cgj2021.v2", "include_pil": false, "numeric_version": "200", "expansion": false, "name": "CGJ2021", "update_always": true, "source": false, "icon_name": "CGJ2021", "version": "2.0", "heap_size": "3", "update_icons": true, "permissions": ["VIBRATE"], "include_sqlite": false, "store": "none", "orientation": "sensorLandscape"}
