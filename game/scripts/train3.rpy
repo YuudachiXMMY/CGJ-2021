@@ -5,13 +5,45 @@ default train3_examine_post = True
 
 
 default fi_train3_examine_post = True
-define fi_train3_examine_room1 = 4
-define fi_train3_examine_room2 = 4
-define fi_train3_examine_room3 = 4
+define fi_train3_examine_room1 = 6
+define fi_train3_examine_room2 = 6
+define fi_train3_examine_room3 = 6
 
 screen train3_bg_front:
     zorder 101
     add 'train3_bg_front' xpos 0 yalign 1.0 xoffset global_xoffset * 0.8
+
+    fixed:
+        if not train3_examine_post:
+            text str("山区列车意外脱轨发生严重爆炸"):
+                ypos 75+25*fi_train3_examine_post xpos 400 color "#fff"
+            text str("1名列车司机当场身亡，1名失踪。。。"):
+                ypos 75+25*(fi_train3_examine_post+1) xpos 400 color "#fff"
+            text str("事故现场还发现3名异教徒尸体，疑似偷渡藏匿在货仓内。"):
+                ypos 75+25*(fi_train3_examine_post+2) xpos 400 color "#fff"
+            timer 3 action SetVariable('train3_examine_post', True), SetVariable('text_i', text_i-3)
+        if (curr_player_xpos > 315 and curr_player_xpos < 650): #and not fi_train3_examine_room1:
+            # $text_i = text_i + 1
+            # $fi_train3_examine_room1 = text_i
+            text str("我是谁"):
+                ypos 75+25*fi_train3_examine_room1 xpos 500 color "#fff"
+            text str("你们是什么人？"):
+                ypos 75+25*(fi_train3_examine_room1+1) xpos 500 color "#fff"
+            timer 3 action SetVariable('train3_examine_room1', True)#, SetVariable('text_i', text_i-2)
+
+        if (curr_player_xpos > 750 and curr_player_xpos < 1100): #and not train3_examine_room2:
+            # $text_i = text_i + 1
+            # $train3_examine_room2 = text_i
+            text str("门从外面被锁住了！"):
+                ypos 75+25*fi_train3_examine_room2 xpos 500 color "#fff"
+            timer 3 action SetVariable('train3_examine_room2', True)#, SetVariable('text_i', text_i-1)
+
+        if (curr_player_xpos > 1200 and curr_player_xpos < 1535): #and not train3_examine_room3:
+            # $text_i = text_i + 1
+            # $train3_examine_room3 = text_i
+            text str("03：33 停驶3分钟 暗号：3个火柴人 Match "):
+                ypos 75+25*fi_train3_examine_room3 xpos 400 color "#fff"
+            timer 3 action SetVariable('train3_examine_room3', True)#, SetVariable('text_i', text_i-1)
 
 screen train3():
 
@@ -110,37 +142,6 @@ screen train3():
         else:
             action NullAction()
 
-    fixed:
-        if not train3_examine_post:
-            text str("山区列车意外脱轨发生严重爆炸"):
-                ypos 75+25*fi_train3_examine_post xpos 400 color "#fff"
-            text str("1名列车司机当场身亡，1名失踪。。。"):
-                ypos 75+25*(fi_train3_examine_post+1) xpos 400 color "#fff"
-            text str("事故现场还发现3名异教徒尸体，疑似偷渡藏匿在货仓内。"):
-                ypos 75+25*(fi_train3_examine_post+2) xpos 400 color "#fff"
-            timer 3 action SetVariable('train3_examine_post', True), SetVariable('text_i', text_i-1)
-        if (curr_player_xpos > 315 and curr_player_xpos < 650): #and not fi_train3_examine_room1:
-            # $text_i = text_i + 1
-            # $fi_train3_examine_room1 = text_i
-            text str("我是谁"):
-                ypos 75+25*fi_train3_examine_room1 xpos 500 color "#fff"
-            text str("你们是什么人？"):
-                ypos 75+25*(fi_train3_examine_room1+1) xpos 500 color "#fff"
-            timer 3 action SetVariable('train3_examine_room1', True)#, SetVariable('text_i', text_i-2)
-
-        if (curr_player_xpos > 750 and curr_player_xpos < 1100): #and not train3_examine_room2:
-            # $text_i = text_i + 1
-            # $train3_examine_room2 = text_i
-            text str("门从外面被锁住了！"):
-                ypos 75+25*fi_train3_examine_room2 xpos 500 color "#fff"
-            timer 3 action SetVariable('train3_examine_room2', True)#, SetVariable('text_i', text_i-1)
-
-        if (curr_player_xpos > 1200 and curr_player_xpos < 1535): #and not train3_examine_room3:
-            # $text_i = text_i + 1
-            # $train3_examine_room3 = text_i
-            text str("03：33 停驶3分钟 暗号：3个火柴人 Match "):
-                ypos 75+25*fi_train3_examine_room3 xpos 400 color "#fff"
-            timer 3 action SetVariable('train3_examine_room3', True)#, SetVariable('text_i', text_i-1)
 
     ############################################################################
     # dev
