@@ -51,16 +51,13 @@ screen train1():
         xoffset global_xoffset
         xpos 521 ypos 260
         auto 'train1_candle_btn_%s'
-        if (curr_player_xpos > 521 - x_obj and curr_player_xpos < 521 + 668 + x_obj):
-            action [
-                Hide('mouseControl'),
-                Hide('bgControl'),
-                Hide('train1_bg_front'),
-                Hide('mainChacter'),
-                Jump('train1_choice')
-            ]
-        else:
-            action NullAction()
+        action [
+            Hide('mouseControl'),
+            Hide('bgControl'),
+            Hide('train1_bg_front'),
+            Hide('mainChacter'),
+            Jump('train1_choice')
+        ]
 
     if not train1_string:
         imagebutton:
@@ -68,11 +65,8 @@ screen train1():
             xoffset global_xoffset
             xpos 1585 ypos 584
             auto "train1_string_btn_%s"
-            if (curr_player_xpos > 1585 - x_obj and curr_player_xpos < 1585 + 308 + x_obj):
-                action [SetVariable("train1_examine_string", False), SetVariable("train1_string", True), SetVariable("string_number", string_number+1),
-                    SetVariable('text_i', text_i+1), SetVariable('fi_train1_examine_string',text_i)]
-            else:
-                action NullAction()
+            action [SetVariable("train1_examine_string", False), SetVariable("train1_string", True), SetVariable("string_number", string_number+1),
+                SetVariable('text_i', text_i+1), SetVariable('fi_train1_examine_string',text_i)]
 
     if train1_burnString and not train1_key_popped:
         timer 0.1 action [SetVariable('train1_key_popped', True), Show("item", name='bg/train1/key.png', log="一把钥匙"),

@@ -47,17 +47,14 @@ screen train2():
         xoffset global_xoffset
         xpos 1190 ypos 316
         auto 'train2_ske_btn_%s'
-        if (curr_player_xpos > 1190 - x_obj and curr_player_xpos < 1190 + 150 + x_obj):
-            if not train2_burnString:
-                action [SetVariable('train2_examine_ske0', False),
-                    SetVariable('text_i', text_i+1), SetVariable('fi_train2_examine_ske1', text_i), SetVariable('fi_trani2_examine_ske_bs', text_i)]
-            elif train2_burnString:
-                action [SetVariable('train2_examine_ske1', False),
-                    SetVariable('train2_examine_ske2', False),
-                    SetVariable('text_i', text_i+5), SetVariable('fi_train2_examine_ske1', text_i), SetVariable('fi_trani2_examine_ske_bs', text_i)
-                    ]
-        else:
-            action NullAction()
+        if not train2_burnString:
+            action [SetVariable('train2_examine_ske0', False),
+                SetVariable('text_i', text_i+1), SetVariable('fi_train2_examine_ske1', text_i), SetVariable('fi_trani2_examine_ske_bs', text_i)]
+        elif train2_burnString:
+            action [SetVariable('train2_examine_ske1', False),
+                SetVariable('train2_examine_ske2', False),
+                SetVariable('text_i', text_i+5), SetVariable('fi_train2_examine_ske1', text_i), SetVariable('fi_trani2_examine_ske_bs', text_i)
+                ]
 
 
     if not train2_string:
@@ -87,23 +84,20 @@ screen train2():
     imagebutton:
         xpos 0 xoffset global_xoffset
         auto 'train2_train2_btn_%s'
-        if (curr_player_xpos > 0 - x_obj and curr_player_xpos < 0 + 197 + x_obj):
-            action [
-                    SetVariable('bar_xoffset', 0),
-                    SetVariable('global_xoffset', 0),
-                    SetVariable('player_xoffset', 0),
-                    SetVariable('curr_mouse_xpos', 150),
-                    SetVariable('curr_player_xpos', 150),
-                    SetVariable('tar_player_xpos', 150),
-                            Hide('train2_bg_front'),
-                            Hide('mouseControl'),
-                            Hide('bgControl'),
-                            Hide('bgControl_bar'),
-                            Hide('mainChacter'),
-                            Hide('train2'),
-                            Return(1)]
-        else:
-            action NullAction()
+        action [
+                SetVariable('bar_xoffset', 0),
+                SetVariable('global_xoffset', 0),
+                SetVariable('player_xoffset', 0),
+                SetVariable('curr_mouse_xpos', 150),
+                SetVariable('curr_player_xpos', 150),
+                SetVariable('tar_player_xpos', 150),
+                        Hide('train2_bg_front'),
+                        Hide('mouseControl'),
+                        Hide('bgControl'),
+                        Hide('bgControl_bar'),
+                        Hide('mainChacter'),
+                        Hide('train2'),
+                        Return(1)]
 
     # Train3 BTN
     # # if curr_player_xpos > 1100:
@@ -111,23 +105,20 @@ screen train2():
     imagebutton:
         xpos 2500 - 197 xoffset global_xoffset
         auto 'train2_train3_btn_%s'
-        if (curr_player_xpos > 2500 - 197 - x_obj and curr_player_xpos < 2500 - 197 + 197 + x_obj):
-            action [
-                    SetVariable('bar_xoffset', 0),
-                    SetVariable('global_xoffset', 0),
-                    SetVariable('player_xoffset', 0),
-                    SetVariable('curr_mouse_xpos', 150),
-                    SetVariable('curr_player_xpos', 150),
-                    SetVariable('tar_player_xpos', 150),
-                            Hide('train2_bg_front'),
-                            Hide('mouseControl'),
-                            Hide('bgControl'),
-                            Hide('bgControl_bar'),
-                            Hide('mainChacter'),
-                            Hide('train2'),
-                            Return(3)]
-        else:
-            action NullAction()
+        action [
+                SetVariable('bar_xoffset', 0),
+                SetVariable('global_xoffset', 0),
+                SetVariable('player_xoffset', 0),
+                SetVariable('curr_mouse_xpos', 150),
+                SetVariable('curr_player_xpos', 150),
+                SetVariable('tar_player_xpos', 150),
+                        Hide('train2_bg_front'),
+                        Hide('mouseControl'),
+                        Hide('bgControl'),
+                        Hide('bgControl_bar'),
+                        Hide('mainChacter'),
+                        Hide('train2'),
+                        Return(3)]
 
     fixed:
         if first_train2:

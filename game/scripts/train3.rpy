@@ -93,16 +93,13 @@ screen train3():
         xoffset global_xoffset
         xpos 1184 ypos 82
         auto 'train3_door3_btn_%s'
-        if (curr_player_xpos > 1184 - x_obj and curr_player_xpos < 1184 + 353 + x_obj):
-            action [
-                Hide('mouseControl'),
-                Hide('bgControl'),
-                Hide('train3_bg_front'),
-                Hide('mainChacter'),
-                Jump('train3_choice')
-            ]
-        else:
-            action NullAction()
+        action [
+            Hide('mouseControl'),
+            Hide('bgControl'),
+            Hide('train3_bg_front'),
+            Hide('mainChacter'),
+            Jump('train3_choice')
+        ]
 
 
     # Post
@@ -110,12 +107,9 @@ screen train3():
         xoffset global_xoffset
         xpos 1234 ypos 201
         auto 'train3_post_btn_%s'
-        if (curr_player_xpos > 1234 - x_obj and curr_player_xpos < 1234 + 244 + x_obj):
-            action [SetVariable('train3_examine_post', False),
-                    SetVariable('text_i', text_i+3), SetVariable('fi_train3_examine_post', text_i)
-                    ]
-        else:
-            action NullAction()
+        action [SetVariable('train3_examine_post', False),
+                SetVariable('text_i', text_i+3), SetVariable('fi_train3_examine_post', text_i)
+                ]
     # on 'show' action Show('item', name="1")
 
     # Train2 BTN
@@ -124,23 +118,20 @@ screen train3():
     imagebutton:
         xpos 0 xoffset global_xoffset
         auto 'train3_train2_btn_%s'
-        if (curr_player_xpos > 0 - x_obj and curr_player_xpos < 0 + 197 + x_obj):
-            action [
-                    SetVariable('bar_xoffset', 0),
-                    SetVariable('global_xoffset', 0),
-                    SetVariable('player_xoffset', 0),
-                    SetVariable('curr_mouse_xpos', 150),
-                    SetVariable('curr_player_xpos', 150),
-                    SetVariable('tar_player_xpos', 150),
-                            Hide('train3_bg_front'),
-                            Hide('mouseControl'),
-                            Hide('bgControl'),
-                            Hide('bgControl_bar'),
-                            Hide('mainChacter'),
-                            Hide('train3'),
-                            Return(2)]
-        else:
-            action NullAction()
+        action [
+                SetVariable('bar_xoffset', 0),
+                SetVariable('global_xoffset', 0),
+                SetVariable('player_xoffset', 0),
+                SetVariable('curr_mouse_xpos', 150),
+                SetVariable('curr_player_xpos', 150),
+                SetVariable('tar_player_xpos', 150),
+                        Hide('train3_bg_front'),
+                        Hide('mouseControl'),
+                        Hide('bgControl'),
+                        Hide('bgControl_bar'),
+                        Hide('mainChacter'),
+                        Hide('train3'),
+                        Return(2)]
 
 
     ############################################################################

@@ -21,22 +21,19 @@ screen intro():
     imagebutton:
         xpos 1081 ypos 720-698
         auto 'intro_train1_btn_%s'
-        if (curr_player_xpos > 1081 - x_obj and curr_player_xpos < 1081 + 193 + x_obj):
-            action [
-                    SetVariable('bar_xoffset', 0),
-                    SetVariable('global_xoffset', 0),
-                    SetVariable('player_xoffset', 0),
-                    SetVariable('curr_mouse_xpos', 100),
-                    SetVariable('curr_player_xpos', 100),
-                    SetVariable('tar_player_xpos', 100),
-                            Hide('mouseControl'),
-                            Hide('bgControl'),
-                            Hide('bgControl_bar'),
-                            Hide('mainChacter'),
-                            Hide('intro'),
-                            Return()]
-        else:
-            action NullAction()
+        action [
+                SetVariable('bar_xoffset', 0),
+                SetVariable('global_xoffset', 0),
+                SetVariable('player_xoffset', 0),
+                SetVariable('curr_mouse_xpos', 100),
+                SetVariable('curr_player_xpos', 100),
+                SetVariable('tar_player_xpos', 100),
+                        Hide('mouseControl'),
+                        Hide('bgControl'),
+                        Hide('bgControl_bar'),
+                        Hide('mainChacter'),
+                        Hide('intro'),
+                        Return()]
 
 
     ############################################################################
