@@ -28,6 +28,27 @@ screen train3():
 
     on 'show' action Show('train3_bg_front')
 
+    add "train3_fire_ani" xoffset global_xoffset:
+        at transform:
+            alpha 0.6 pos(689, 156)
+            linear 0.2 alpha 0.9 pos(689-5, 156)
+            pause 0.05
+            linear 0.2 alpha 0.6 pos(689-5, 156-5)
+            pause 0.05
+            linear 0.2 alpha 0.9 pos(689, 156-5)
+            pause 0.05
+            linear 0.2 alpha 0.6 pos(689, 156)
+            pause 0.05
+            linear 0.2 alpha 0.9 pos(689, 156-5)
+            pause 0.05
+            linear 0.2 alpha 0.6 pos(689-5, 156)
+            pause 0.05
+            linear 0.2 alpha 0.9 pos(689-5, 156-5)
+            pause 0.05
+            linear 0.2 alpha 0.6 pos(689, 156)
+            pause 0.05
+            repeat
+
     imagebutton:
         idle "gui/null_mouseControll.png"
         action Show('mouseControl')

@@ -228,6 +228,8 @@ image train3_door3_btn_hover:
     'train3_door3_btn_idle'
     # "bg/train3/door3_hover.png"
 
+image train3_fire_ani:
+    "bg/train3/fire.png"
 
 # End 1
 image end1_1:

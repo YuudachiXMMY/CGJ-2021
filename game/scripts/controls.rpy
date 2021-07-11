@@ -18,7 +18,7 @@ screen mouseControl():
     modal True
 
     text "Waling...":
-        xpos 493 ypos 20
+        xpos 100 ypos 0
 
     if firstShowed:
         on 'show' action SetVariable('firstShowed', False)

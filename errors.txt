@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/scripts/train2.rpy", line 48: reached end of line when expecting ':'.
-    if global_xoffset >= 2500 - 1280 - 50
-                                         ^
+File "game/scripts/train3.rpy", line 33: u'linear' is not a keyword argument or valid child for the add statement.
+    linear 0.2 alpha 0.9 pos(689-5, 156)
+          ^
 
 Ren'Py Version: Ren'Py 7.4.6.1693
-Sun Jul 11 13:21:41 2021
+Sun Jul 11 13:42:17 2021
