@@ -42,6 +42,7 @@ default text_i = 0
 # The game starts here.
 
 label start:
+    stop sound
 
     $string_number = 0
 
@@ -102,6 +103,7 @@ label start:
     jump intro
 
 label intro:
+    stop sound
     play music 'music/bgm1.mp3'
 
     $firstShowed = True
@@ -121,12 +123,14 @@ label intro:
     jump train1
 
 label train1:
+    stop sound
 
     $firstShowed = True
 
     jump _train1
 
 label _train1():
+    stop sound
     if failExamin:
         "摸索失败"
     call screen train1()
@@ -139,6 +143,7 @@ label _train1():
             jump _train2
 
 label train1_choice:
+    stop sound
     if train1_examine >= 1 and train1_string and string_number > 0:
         menu:
             "太黑了，什么也看不见，要点燃绳子吗?"
@@ -189,6 +194,7 @@ label train1_choice:
                 jump _train1
 
 label train2:
+    stop sound
     play music "music/bgm2.wav"
 
     $firstShowed = True
@@ -205,15 +211,18 @@ label train2:
                 jump train2_key2
 
 label train2_key1:
+    stop sound
     $train2_unlock = True
     "试着用它打开车门，钥匙被掰断了。"
     jump _train2
 
 label train2_key2:
+    stop sound
     "车门被打开了。。。"
     jump _train2
 
 label _train2:
+    stop sound
     if failExamin:
         $failExamin=False
         "摸索失败"
@@ -236,6 +245,7 @@ label _train2:
         jump train3
 
 label train2_choice:
+    stop sound
     if train2_string and string_number > 0:
         menu:
             "要点燃它吗?"
@@ -243,7 +253,7 @@ label train2_choice:
             "点燃绳子":
                 $string_number = string_number - 1
                 $train2_burnString = True
-                $text_i = text_i + 1
+                $text_i = text_i + 2
                 $fi_train2_examine_burngString = text_i
                 jump _train2
 
@@ -253,6 +263,7 @@ label train2_choice:
 
 
 label train3:
+    stop sound
     play music "music/bgm3.wav"
 
     $firstShowed = True
@@ -265,6 +276,7 @@ label train3:
     jump _train3
 
 label _train3:
+    stop sound
     if failExamin:
         "摸索失败"
     call screen train3()
@@ -278,6 +290,7 @@ label _train3:
 
 
 label train3_choice:
+    stop sound
     if string_number == 2:
         menu:
             "走进房间":
@@ -297,20 +310,46 @@ label train3_choice:
                 jump _train3
 
 label train3_c1:
+    stop sound
     play music "music/end.mp3"
-    "火柴人的灵魂 永远停留在车上。"
 
-    'END'
+    scene end1_1 with dissolve
+    pause 2
+    scene end1_2 with dissolve
+    pause 2
+    scene end1_3 with dissolve
+    pause 2
+    scene end1_4 with dissolve
+    pause 2
+    "火柴人的灵魂 永远停留在车上。"
+    window hide
+    pause 1
+
     stop sound
     stop music
     stop voice
     return
 
 label train3_c2:
+    stop sound
     play music "music/end.mp3"
-    "列车的大门被关上，车缓缓发动起来，火柴人，消失了。"
 
-    'END'
+    scene end2_1 with dissolve
+    pause 1
+    scene end2_2 with dissolve
+    pause 1
+    scene end2_3 with dissolve
+    pause 1
+    scene end2_4 with dissolve
+    pause 1
+    scene end2_5 with dissolve
+    pause 0.8
+    scene end2_6 with dissolve
+    pause 1
+    "列车的大门被关上，车缓缓发动起来，火柴人，消失了。"
+    window hide
+    pause 1
+
     stop sound
     stop music
     stop voice

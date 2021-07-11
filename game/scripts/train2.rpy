@@ -47,14 +47,17 @@ screen train2():
         xoffset global_xoffset
         xpos 1190 ypos 316
         auto 'train2_ske_btn_%s'
-        if not train2_burnString:
-            action [SetVariable('train2_examine_ske0', False),
-                SetVariable('text_i', text_i+1), SetVariable('fi_train2_examine_ske1', text_i), SetVariable('fi_trani2_examine_ske_bs', text_i)]
-        elif train2_burnString:
-            action [SetVariable('train2_examine_ske1', False),
-                SetVariable('train2_examine_ske2', False),
-                SetVariable('text_i', text_i+4), SetVariable('fi_train2_examine_ske1', text_i), SetVariable('fi_trani2_examine_ske_bs', text_i)
-                ]
+        if (curr_player_xpos > 1190 - x_obj and curr_player_xpos < 1190 + 150 + x_obj):
+            if not train2_burnString:
+                action [SetVariable('train2_examine_ske0', False),
+                    SetVariable('text_i', text_i+1), SetVariable('fi_train2_examine_ske1', text_i), SetVariable('fi_trani2_examine_ske_bs', text_i)]
+            elif train2_burnString:
+                action [SetVariable('train2_examine_ske1', False),
+                    SetVariable('train2_examine_ske2', False),
+                    SetVariable('text_i', text_i+5), SetVariable('fi_train2_examine_ske1', text_i), SetVariable('fi_trani2_examine_ske_bs', text_i)
+                    ]
+        else:
+            action NullAction()
 
 
     if not train2_string:
@@ -62,15 +65,16 @@ screen train2():
             xoffset global_xoffset
             xpos 382 ypos 641
             auto "train2_string_btn_%s"
-            action [SetVariable("train2_string", True),
-                SetVariable('text_i', text_i+1),
-                SetVariable('fi_train2_examine_string', text_i),
-                SetVariable("string_number", string_number+1),
-                Hide('mouseControl'),
-                Hide('bgControl'),
-                Hide('train2_bg_front'),
-                Hide('mainChacter'),
-                Jump('train2_choice')]
+            if (curr_player_xpos > 382 - x_obj and curr_player_xpos < 382 + 308 + x_obj):
+                action [SetVariable("train2_string", True),
+                    SetVariable('text_i', text_i+1),
+                    SetVariable('fi_train2_examine_string', text_i),
+                    SetVariable("string_number", string_number+1),
+                    Hide('mouseControl'),
+                    Hide('bgControl'),
+                    Hide('train2_bg_front'),
+                    Hide('mainChacter'),
+                    Jump('train2_choice')]
 
     if train2_box and not train2_box_popped:
         timer 0.1 action [SetVariable('train2_box_popped', True), Show("item", name='bg/train2/box.png', log="一个盒子")]
@@ -83,20 +87,23 @@ screen train2():
     imagebutton:
         xpos 0 xoffset global_xoffset
         auto 'train2_train2_btn_%s'
-        action [
-                SetVariable('bar_xoffset', 0),
-                SetVariable('global_xoffset', 0),
-                SetVariable('player_xoffset', 0),
-                SetVariable('curr_mouse_xpos', 150),
-                SetVariable('curr_player_xpos', 150),
-                SetVariable('tar_player_xpos', 150),
-                        Hide('train2_bg_front'),
-                        Hide('mouseControl'),
-                        Hide('bgControl'),
-                        Hide('bgControl_bar'),
-                        Hide('mainChacter'),
-                        Hide('train2'),
-                        Return(1)]
+        if (curr_player_xpos > 0 - x_obj and curr_player_xpos < 0 + 197 + x_obj):
+            action [
+                    SetVariable('bar_xoffset', 0),
+                    SetVariable('global_xoffset', 0),
+                    SetVariable('player_xoffset', 0),
+                    SetVariable('curr_mouse_xpos', 150),
+                    SetVariable('curr_player_xpos', 150),
+                    SetVariable('tar_player_xpos', 150),
+                            Hide('train2_bg_front'),
+                            Hide('mouseControl'),
+                            Hide('bgControl'),
+                            Hide('bgControl_bar'),
+                            Hide('mainChacter'),
+                            Hide('train2'),
+                            Return(1)]
+        else:
+            action NullAction()
 
     # Train3 BTN
     # # if curr_player_xpos > 1100:
@@ -104,21 +111,23 @@ screen train2():
     imagebutton:
         xpos 2500 - 197 xoffset global_xoffset
         auto 'train2_train3_btn_%s'
-        action [
-                SetVariable('bar_xoffset', 0),
-                SetVariable('global_xoffset', 0),
-                SetVariable('player_xoffset', 0),
-                SetVariable('curr_mouse_xpos', 150),
-                SetVariable('curr_player_xpos', 150),
-                SetVariable('tar_player_xpos', 150),
-                        Hide('train2_bg_front'),
-                        Hide('mouseControl'),
-                        Hide('bgControl'),
-                        Hide('bgControl_bar'),
-                        Hide('mainChacter'),
-                        Hide('train2'),
-                        Return(3)]
-
+        if (curr_player_xpos > 2500 - 197 - x_obj and curr_player_xpos < 2500 - 197 + 197 + x_obj):
+            action [
+                    SetVariable('bar_xoffset', 0),
+                    SetVariable('global_xoffset', 0),
+                    SetVariable('player_xoffset', 0),
+                    SetVariable('curr_mouse_xpos', 150),
+                    SetVariable('curr_player_xpos', 150),
+                    SetVariable('tar_player_xpos', 150),
+                            Hide('train2_bg_front'),
+                            Hide('mouseControl'),
+                            Hide('bgControl'),
+                            Hide('bgControl_bar'),
+                            Hide('mainChacter'),
+                            Hide('train2'),
+                            Return(3)]
+        else:
+            action NullAction()
 
     fixed:
         if first_train2:
@@ -143,9 +152,9 @@ screen train2():
                     ypos 75+25*fi_train2_examine_string xpos 200 color "#fff"
                 timer 3 action SetVariable('train2_examine_string', True), SetVariable('text_i', text_i-1)
         if train2_burnString and not train2_examine_burngString:
-            text str("点燃了绳子 红色的火焰窜起起 我在它背后看到了几具实体的残骸 他们的结局与这节车厢一样，被大火吞噬。"):
+            text str("点燃了绳子 红色的火焰窜起起 我在它背后看到了几具实体的残骸。\n他们的结局与这节车厢一样，被大火吞噬。"):
                 ypos 75+25*fi_train2_examine_burngString xpos 200 color "#fff"
-            timer 3 action SetVariable('train2_examine_burngString', True), SetVariable('text_i', text_i-1)
+            timer 3 action SetVariable('train2_examine_burngString', True), SetVariable('text_i', text_i-2)
         if not train2_examine_ske0 and not train2_burnString:
             text str("我阴影中看到了几具实体的残骸 他们的结局与这节车厢一样，被大火吞噬。"):
                 ypos 75+25*fi_train2_examine_ske1 xpos 200 color "#fff"
@@ -154,14 +163,14 @@ screen train2():
             text str("轻轻翻动残骸，找到一个发黑的铁盒子，被锁住了。"):
                 ypos 75+25*fi_trani2_examine_ske_bs xpos 200 color "#fff"
             timer 3 action SetVariable('train2_examine_ske1', True), SetVariable('train2_examine_ske_bs', True), SetVariable('train2_box', True), SetVariable('text_i', text_i-1)
-        if not train2_examine_ske2 and train2_box and not train2_examine_box and not train2_unlock:
-            text str("盒子上的花纹似乎与刚才的铁钥匙有些相似。"):
-                ypos 75+25*(fi_train2_examine_ske2+1) xpos 200 color "#fff"
-            text str("试了好几下，钥匙插进去了，转动钥匙"):
-                ypos 75+25*(fi_train2_examine_ske2+2) xpos 200 color "#fff"
-            text str("慢慢打开盒子，里面装着几枚钱币，和几张身份证明，上面签名的字迹模糊不清。"):
-                ypos 75+25*(fi_train2_examine_ske2+3) xpos 200 color "#fff"
-            timer 3 action SetVariable('train2_examine_ske2', True),SetVariable('train2_examine_box', True), SetVariable('text_i', text_i-3)
+            if not train2_unlock:
+                text str("盒子上的花纹似乎与刚才的铁钥匙有些相似。"):
+                    ypos 75+25*(fi_train2_examine_ske2+1) xpos 200 color "#fff"
+                text str("试了好几下，钥匙插进去了，转动钥匙"):
+                    ypos 75+25*(fi_train2_examine_ske2+2) xpos 200 color "#fff"
+                text str("慢慢打开盒子，里面装着几枚钱币，和几张身份证明，\n上面签名的字迹模糊不清。"):
+                    ypos 75+25*(fi_train2_examine_ske2+3) xpos 200 color "#fff"
+                timer 3 action SetVariable('train2_examine_ske2', True),SetVariable('train2_examine_box', True), SetVariable('text_i', text_i-4)
 
     ############################################################################
     # dev

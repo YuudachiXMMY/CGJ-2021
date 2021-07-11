@@ -12,7 +12,6 @@ init python:
     gui.init(1280, 720)
 
 
-
 ################################################################################
 ## GUI Configuration Variables
 ################################################################################
@@ -64,19 +63,19 @@ define gui.name_text_font = "站酷高端黑修订版1.13.ttf"
 define gui.interface_text_font = "站酷高端黑修订版1.13.ttf"
 
 ## The size of normal dialogue text.
-define gui.text_size = 22
+define gui.text_size = 26
 
 ## The size of character names.
 define gui.name_text_size = 30
 
 ## The size of text in the game's user interface.
-define gui.interface_text_size = 22
+define gui.interface_text_size = 26
 
 ## The size of labels in the game's user interface.
-define gui.label_text_size = 24
+define gui.label_text_size = 28
 
 ## The size of text on the notify screen.
-define gui.notify_text_size = 16
+define gui.notify_text_size = 20
 
 ## The size of the game's title.
 define gui.title_text_size = 50

@@ -1,11 +1,26 @@
 init offset = -2
 
+define x_obj = 75
+
 ## Gui
 image null_bg:
     "gui/null_mouseControll.png"
 
 image item_bg:
     "gui/map/item_bg.png"
+
+image start_btn_idle:
+    alpha 0.5
+    "gui/start.png"
+    linear 1.5 alpha 0.85
+    pause 0.5
+    linear 1.5 alpha 0.5
+    pause 0.1
+    repeat
+
+image start_btn_hover:
+    alpha 1.0
+    "gui/start.png"
 
 ## Test
 image test_bg:
@@ -214,6 +229,35 @@ image train3_door3_btn_hover:
     # "bg/train3/door3_hover.png"
 
 
+# End 1
+image end1_1:
+    "bg/end/1/1.jpg"
+image end1_2:
+    "bg/end/1/2.jpg"
+image end1_3:
+    "bg/end/1/3.jpg"
+image end1_4:
+    "bg/end/1/4.jpg"
+
+# End 2
+image end2_1:
+    xpos 1500
+    "bg/end/2/1.jpg"
+image end2_2:
+    xpos 1500
+    "bg/end/2/2.jpg"
+image end2_3:
+    xpos 1500
+    "bg/end/2/3.jpg"
+image end2_4:
+    xpos 1500
+    "bg/end/2/4.jpg"
+image end2_5:
+    xpos 1500
+    "bg/end/2/5.jpg"
+image end2_6:
+    xpos 1500
+    "bg/end/2/6.jpg"
 
 
 

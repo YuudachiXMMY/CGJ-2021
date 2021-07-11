@@ -51,13 +51,16 @@ screen train1():
         xoffset global_xoffset
         xpos 521 ypos 260
         auto 'train1_candle_btn_%s'
-        action [
-            Hide('mouseControl'),
-            Hide('bgControl'),
-            Hide('train1_bg_front'),
-            Hide('mainChacter'),
-            Jump('train1_choice')
-        ]
+        if (curr_player_xpos > 521 - x_obj and curr_player_xpos < 521 + 668 + x_obj):
+            action [
+                Hide('mouseControl'),
+                Hide('bgControl'),
+                Hide('train1_bg_front'),
+                Hide('mainChacter'),
+                Jump('train1_choice')
+            ]
+        else:
+            action NullAction()
 
     if not train1_string:
         imagebutton:
@@ -65,12 +68,15 @@ screen train1():
             xoffset global_xoffset
             xpos 1585 ypos 584
             auto "train1_string_btn_%s"
-            action [SetVariable("train1_examine_string", False), SetVariable("train1_string", True), SetVariable("string_number", string_number+1),
-                SetVariable('text_i', text_i+1), SetVariable('fi_train1_examine_string',text_i)]
+            if (curr_player_xpos > 1585 - x_obj and curr_player_xpos < 1585 + 308 + x_obj):
+                action [SetVariable("train1_examine_string", False), SetVariable("train1_string", True), SetVariable("string_number", string_number+1),
+                    SetVariable('text_i', text_i+1), SetVariable('fi_train1_examine_string',text_i)]
+            else:
+                action NullAction()
 
     if train1_burnString and not train1_key_popped:
         timer 0.1 action [SetVariable('train1_key_popped', True), Show("item", name='bg/train1/key.png', log="一把钥匙"),
-                SetVariable('text_i', text_i+1), SetVariable('fi_train1_examine_burnString',text_i)]
+                SetVariable('text_i', text_i+2), SetVariable('fi_train1_examine_burnString',text_i)]
 
     # on 'show' action Show('item', name="1")
 
@@ -81,27 +87,30 @@ screen train1():
         activate_sound "music/item.wav"
         xpos 2500 - 197 xoffset global_xoffset
         auto 'train1_train2_btn_%s'
-        action [
-                SetVariable('bar_xoffset', 0),
-                SetVariable('global_xoffset', 0),
-                SetVariable('player_xoffset', 0),
-                SetVariable('curr_mouse_xpos', 150),
-                SetVariable('curr_player_xpos', 150),
-                SetVariable('tar_player_xpos', 150),
-                        Hide('train1_bg_front'),
-                        Hide('mouseControl'),
-                        Hide('bgControl'),
-                        Hide('bgControl_bar'),
-                        Hide('mainChacter'),
-                        Hide('train1'),
-                        Return(2)]
+        if (curr_player_xpos > 2500 - 197 - x_obj and curr_player_xpos < 2500 - 197 + 197 + x_obj):
+            action [
+                    SetVariable('bar_xoffset', 0),
+                    SetVariable('global_xoffset', 0),
+                    SetVariable('player_xoffset', 0),
+                    SetVariable('curr_mouse_xpos', 150),
+                    SetVariable('curr_player_xpos', 150),
+                    SetVariable('tar_player_xpos', 150),
+                            Hide('train1_bg_front'),
+                            Hide('mouseControl'),
+                            Hide('bgControl'),
+                            Hide('bgControl_bar'),
+                            Hide('mainChacter'),
+                            Hide('train1'),
+                            Return(2)]
+        else:
+            action NullAction()
 
 
     fixed:
         if train1_burnString and not train1_examine_burnString:
-            text str("用手擦拭祷告桌，桌上堆叠着破损的餐具，书籍的残骸，在一片狼藉中，找到一把破旧的铁钥匙。"):
+            text str("用手擦拭祷告桌，桌上堆叠着破损的餐具，书籍的残骸，\n在一片狼藉中，找到一把破旧的铁钥匙。"):
                 ypos 75+25*fi_train1_examine_burnString  xpos 200 color "#fff"
-            timer 3 action SetVariable('train1_examine_burnString', True), SetVariable('text_i', text_i-1)
+            timer 3 action SetVariable('train1_examine_burnString', True), SetVariable('text_i', text_i-2)
         if train1_bone and not train1_examine_bone:
             text str("车厢变亮了一些 ，桌下盖着厚厚的幕布。"):
                 ypos 75+25*fi_train1_examine_bone  xpos 200 color "#fff"

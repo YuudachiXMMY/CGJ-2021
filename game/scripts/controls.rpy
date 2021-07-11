@@ -47,6 +47,52 @@ screen bgControl(width):
     zorder 111
 
     fixed:
+        if renpy.get_screen('train1') or renpy.get_screen('train2') or renpy.get_screen('train3'):
+            imagebutton:
+                keysym 'mousedown_4'
+                ypos -50 xpos -50
+                idle "bgControl_slider_btn_idle"
+                if global_xoffset <= -(width - 1280 - 75):
+                    action NullAction()
+                else:
+                    if renpy.get_screen('train1'):
+                        action [SetVariable('global_xoffset', global_xoffset-75),
+                                Hide('train1_bg_front'), Show('train1_bg_front')
+                                ]
+                    if renpy.get_screen('train2'):
+                        action [SetVariable('global_xoffset', global_xoffset-75),
+                                Hide('train2_bg_front'), Show('train2_bg_front')
+                                ]
+                    if renpy.get_screen('train3'):
+                        action [SetVariable('global_xoffset', global_xoffset-75),
+                                Hide('train3_bg_front'), Show('train3_bg_front')
+                                ]
+                    else:
+                        action [SetVariable('global_xoffset', global_xoffset-75),
+                                ]
+            imagebutton:
+                keysym 'mousedown_5'
+                ypos -50 xpos -50
+                idle "bgControl_slider_btn_idle"
+                if global_xoffset >= 0 - 75:
+                    action NullAction()
+                else:
+                    if renpy.get_screen('train1'):
+                        action [SetVariable('global_xoffset', global_xoffset+50),
+                                Hide('train1_bg_front'), Show('train1_bg_front')
+                                ]
+                    if renpy.get_screen('train2'):
+                        action [SetVariable('global_xoffset', global_xoffset+50),
+                                Hide('train2_bg_front'), Show('train2_bg_front')
+                                ]
+                    if renpy.get_screen('train3'):
+                        action [SetVariable('global_xoffset', global_xoffset+50),
+                                Hide('train3_bg_front'), Show('train3_bg_front')
+                                ]
+                    else:
+                        action [SetVariable('global_xoffset', global_xoffset+50),
+                                ]
+
         if width - 1280 > 0:
             style_prefix 'bgControl'
             xpos 493
@@ -71,7 +117,8 @@ screen bgControl(width):
                 ])
 
 style bgControl_bar:
-    xysize(294, 19)
+    xysize(1280, 45)
+    xpos-490 ypos 720 - 45
     base_bar "bgControl_slider_idle"
     thumb "bgControl_slider_btn_idle"
 

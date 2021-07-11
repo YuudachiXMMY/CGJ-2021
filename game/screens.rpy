@@ -372,24 +372,29 @@ screen main_menu():
 
     on 'show' action Play("music", 'music/bgm1.mp3')
 
-    ## This empty frame darkens the main menu.
-    frame:
-        style "main_menu_frame"
+    imagebutton:
+        xalign 0.47 yalign 0.8
+        auto "start_btn_%s"
+        action Start()
+
+    # ## This empty frame darkens the main menu.
+    # frame:
+    #     style "main_menu_frame"
 
     ## The use statement includes another screen inside this one. The actual
     ## contents of the main menu are in the navigation screen.
-    use navigation
+    # use navigation
 
-    if gui.show_name:
+    # if gui.show_name:
 
-        vbox:
-            style "main_menu_vbox"
+    #     vbox:
+    #         style "main_menu_vbox"
 
-            text "[config.name!t]":
-                style "main_menu_title"
+    #         text "[config.name!t]":
+    #             style "main_menu_title"
 
-            text "[config.version]":
-                style "main_menu_version"
+    #         text "[config.version]":
+    #             style "main_menu_version"
 
 
 style main_menu_frame is empty
